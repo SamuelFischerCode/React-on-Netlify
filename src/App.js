@@ -12,14 +12,29 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
-				{this.state.visible ? (
+				<div
+					style={
+						this.state.visible
+							? {}
+							: {
+									display: 'none',
+							  }
+					}
+				>
+					<img src={logo} className="App-logo" alt="logo" />
+					<Counter startCount={1} addSub={1} />
+				</div>
+				<div
+					style={
+						!this.state.visible
+							? {}
+							: {
+									display: 'none',
+							  }
+					}
+				>
 					<ImageSlider />
-				) : (
-					<div>
-						<img src={logo} className="App-logo" alt="logo" />
-						<Counter startCount={1} addSub={1} />
-					</div>
-				)}
+				</div>
 				<br />
 				<button
 					onClick={() => {
