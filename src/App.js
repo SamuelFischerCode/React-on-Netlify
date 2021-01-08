@@ -1,24 +1,38 @@
-//import './App.css';
-//import { Header } from './components/Header';
+import { Component } from 'react';
+import './App.css';
+import logo from './logo.svg';
+import { ImageSlider } from './components/ImageSlider';
 import { Counter } from './components/Counter';
 
-const App = () => (
-	<div className="App">
-		<Counter startCount={0} addSub={1} />
-		<Counter startCount={0} addSub={10} />
-	</div>
-);
+class App extends Component {
+	state = {
+		visible: false,
+	};
+
+	render() {
+		return (
+			<div className="App">
+				{this.state.visible ? (
+					<ImageSlider />
+				) : (
+					<div>
+						<img src={logo} className="App-logo" alt="logo" />
+						<Counter startCount={1} addSub={1} />
+					</div>
+				)}
+				<br />
+				<button
+					onClick={() => {
+						this.setState({
+							visible: !this.state.visible,
+						});
+					}}
+				>
+					{this.state.visible ? 'Hide' : 'Show'}
+				</button>
+			</div>
+		);
+	}
+}
 
 export default App;
-
-/*
-		<Header
-			contents="hi"
-			num={2}
-			myFunc={(a, b) => a + b}
-			myObj={{
-				foo: 'I like',
-				bar: ' React alot',
-			}}
-		/>
-		*/

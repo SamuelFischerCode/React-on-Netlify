@@ -9,14 +9,14 @@ export class Counter extends Component {
 
 	handleButtonClick = () => {
 		this.setState({
-			count: this.state.count + this.props.addSub,
+			count: this.state.count + this.props.addSub || 1,
 		});
 		//console.log(this.state.count);
 	};
 
 	handleButtonClick2 = () => {
 		this.setState({
-			count: this.state.count - this.props.addSub,
+			count: this.state.count - this.props.addSub || 1,
 		});
 		//console.log(this.state.count);
 	};
@@ -25,8 +25,12 @@ export class Counter extends Component {
 		return (
 			<div>
 				<div>Count: {this.state.count}</div>
-				<button onClick={this.handleButtonClick}>+{this.props.addSub}</button>
-				<button onClick={this.handleButtonClick2}>-{this.props.addSub}</button>
+				<button onClick={this.handleButtonClick}>
+					+{this.props.addSub || 1}
+				</button>
+				<button onClick={this.handleButtonClick2}>
+					-{this.props.addSub || 1}
+				</button>
 			</div>
 		);
 	}
