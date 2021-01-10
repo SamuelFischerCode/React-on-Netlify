@@ -11,15 +11,19 @@ export default class MyForm extends Component {
 	handleChangeName = event => {
 		this.setState({ name: event.target.value });
 	};
+
 	handleChangeDescription = event => {
 		this.setState({ description: event.target.value });
 	};
+
 	handleChangeCheckbox = event => {
 		this.setState({ important: event.target.checked });
 	};
+
 	handleChangeSelectField = event => {
 		this.setState({ title: event.target.value });
 	};
+
 	submit = () => {
 		console.log(this.state);
 	};
