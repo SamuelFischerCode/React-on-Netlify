@@ -3,36 +3,38 @@ import { Component } from 'react';
 export default class FetchRandomUser extends Component {
 	state = {
 		loading: true,
-		person: null,
+		people: [],
 	};
 
 	async componentDidMount() {
-		const url = 'https://api.randomuser.me/';
+		const url = 'https://api.randomuser.me/?results=100';
 		const response = await fetch(url);
 		const data = await response.json();
-		this.setState({ loading: false, person: data.results[0] });
+		this.setState({ loading: false, people: data.results });
 	}
 
 	render() {
+		if (this.state.loading) return <div>loading...</div>;
+
+		if (!this.state.people.length) return <div>didn't get a person</div>;
+
 		return (
 			<div>
-				{this.state.loading || !this.state.person ? (
-					<div>loading...</div>
-				) : (
-					<div>
+				{this.state.people.map(person => (
+					<div key={person.login.uuid}>
 						<div>
 							Name:{' '}
-							{this.state.person.name.title +
+							{person.name.title +
 								'. ' +
-								this.state.person.name.first +
+								person.name.first +
 								' ' +
-								this.state.person.name.last}{' '}
+								person.name.last}{' '}
 						</div>
 						<div>
-							<img src={this.state.person.picture.large} alt="" />
+							<img src={person.picture.large} alt="" />
 						</div>
 					</div>
-				)}
+				))}
 			</div>
 		);
 	}

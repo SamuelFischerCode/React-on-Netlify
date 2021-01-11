@@ -1,1 +1,1 @@
-GET https://api.randomuser.me/
+GET https://api.randomuser.me/?results=5
